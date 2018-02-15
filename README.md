@@ -7,10 +7,6 @@ A boilerplate for MERN stack!
 * React
 * Node.js
 
-# React Components
-
-![Components Map](/client/public/download.png)
-
 # Backend Routes
 METHOD | URL | Purpose
 --- | --- | ---
