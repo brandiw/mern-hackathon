@@ -13,6 +13,7 @@ router.post('/login', function(req, res, next) {
   var passwordMatch = false;
   // look up user
   User.findOne({email: req.body.email}, function(err, user) {
+    console.log('promise', err, user);
     if(!user || !user.password){
       return res.status(403).send({
         error: true,
@@ -24,15 +25,17 @@ router.post('/login', function(req, res, next) {
     // compare passwords
     passwordMatch = bcrypt.compareSync(req.body.password, hashedPass);
     if (passwordMatch) {
+      console.log('match')
       // Make a token and return it as JSON
       var token = jwt.sign(user.toObject(), process.env.JWT_SECRET, {
         expiresIn: 60 * 60 * 24 // expires in 24 hours
       });
-      res.send({user: user, token: token});
+      return res.send({user: user, token: token});
     }
     else {
+      console.log('not match')
       // Return an error
-      res.status(401).send({
+      return res.status(401).send({
         error: true,
         message: 'Invalid Login Credentials. Try Again!'
       });

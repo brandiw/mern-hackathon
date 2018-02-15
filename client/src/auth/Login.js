@@ -29,8 +29,8 @@ class Login extends Component {
       this.setState({ success: true });
       this.props.updateUser();
     }).catch((error) => {
-      console.log('error returned', error.response.data);
-      this.props.setFlash('error', error.response.status + ': ' + (error.response.data && error.response.data.error ? error.response.data.message : error.response.statusText));
+      console.log('error returned', error.response);
+      this.props.setFlash('error', 'Invalid Credentials');
     });
   }
 

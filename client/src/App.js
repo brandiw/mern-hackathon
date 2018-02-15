@@ -53,10 +53,6 @@ class App extends Component {
     }
   }
 
-  updateUser = () => {
-    this.getUser();
-  }
-
   setFlash = (t, msg) => {
     this.setState({
       flash: msg,
@@ -76,14 +72,14 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
-            <Nav user={this.state.user} />
+            <Nav user={this.state.user} updateUser={this.getUser} />
             <div className="space">
               <Flash flashType={this.state.flashType} flash={this.state.flash} setFlash={this.setFlash} cancelFlash={this.cancelFlash} />
               <Route exact path="/" component={Home} />
               <Route path="/login" component={
-                () => (<Login user={this.state.user} setFlash={this.setFlash} updateUser={this.updateUser} />)} />
+                () => (<Login user={this.state.user} setFlash={this.setFlash} updateUser={this.getUser} />)} />
               <Route path="/signup" component={
-                () => (<Signup user={this.state.user} setFlash={this.setFlash} updateUser={this.updateUser} />)} />
+                () => (<Signup user={this.state.user} setFlash={this.setFlash} updateUser={this.getUser} />)} />
               <Route path="/profile" component={
                 () => (<Profile user={this.state.user} setFlash={this.setFlash} />)} />
             </div>

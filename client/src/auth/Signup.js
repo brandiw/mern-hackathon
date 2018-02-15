@@ -33,7 +33,7 @@ class Signup extends Component {
       this.props.updateUser();
     }).catch(error => {
       console.log(error.response);
-      this.props.setFlash('error', error.response.status + ': ' + (error.response.data && error.response.data.error ? error.response.data.message : error.response.statusText));
+      this.props.setFlash('error', 'Failure message here');
     })
   }
 
